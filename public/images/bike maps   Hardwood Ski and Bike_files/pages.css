@@ -1,0 +1,378 @@
+/* Services */
+.page-id-1167 .circle-large {
+	position: absolute;
+	right: 3em;
+	top: 0;
+}
+/*Grooming*/
+.page-id-1107 .vc_span6 {
+	width: 50%;
+	margin-left: 0 !important;
+}
+
+/* Why hardwood? */
+@media all and (max-width: 75em) {
+	.page-id-1092 .vc_row-fluid .vc_span3 {
+		margin-left: 0;
+		display: block;
+		min-height: 16em;
+	}
+	.page-id-1092 .vc_row-fluid .vc_span3:nth-of-type(odd) {
+		width: 30%;
+		margin-right: 5%;
+	}
+	.page-id-1092 .vc_row-fluid .vc_span3:nth-of-type(even) {
+		width: 60%;
+	}
+}
+
+@media all and (max-width: 40em) {
+	.page-id-1092 .vc_row-fluid .vc_span3 {
+		min-height: 0em;
+	}	
+}
+
+/* Programs & Lessons */
+.page-id-1077 .circle-small {
+	position: absolute;
+	/*right: 2em;*/
+	right: 0;
+	bottom: 1em;
+}
+
+.page-id-1077 .price {
+	text-indent: -0.4em;
+}
+
+.page-id-1077 .circle-medium {
+	font-size: 11px;
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	width: 100px;
+	height: 100px;
+	padding: 1em;
+	margin-left: 0.5em;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.page-id-1077 .circle-medium p {
+	padding-top: 0.8em;
+}
+
+.page-id-1077 .three-circles-1 {
+	bottom: 13em;
+}
+
+.page-id-1077 .three-circles-2 {
+	bottom: 4.5em;
+}
+
+.page-id-1077 .three-circles-3 {
+	bottom: 0em;
+}
+
+.page-id-1077 .three-circles-horizontal-1 {
+	/*right: 18em;*/
+	/*right: 1em;*/
+} 
+
+.page-id-1077 .three-circles-horizontal-2 {
+	/*right: 9.5em;*/
+/*	right: 0.5em;*/
+}
+
+.page-id-1077 .three-circles-horizontal-3 {
+	/*right: 1em;*/
+	right: 0;
+	bottom: 4.5em;
+}
+
+.page-id-1077 .two-circles-1 {
+	bottom: 3.5em;
+}
+
+.page-id-1077 .two-circles-2 {
+	bottom: -1em;
+}
+.page-id-1077 .price_center {
+	line-height: 2;
+}
+
+@media all and (max-width: 187em) {
+	.page-id-1077 .circle-small {
+		bottom: 2em;
+		position: relative;
+		/*float: left;*/
+		margin-right: 1em;
+	}
+	.page-id-1077 .circle-small-1 {
+		bottom: 3em;
+		/*float: none !important;*/
+		
+	}
+	.page-id-1077 .three-circles {
+		float: right;
+	}
+	.page-id-1077 .two-circles {
+		/*float: right;*/
+	}
+
+}
+
+@media all and (max-width: 81.25em) {
+	.page-id-1077 .circle-small {
+		bottom: 2em;
+		position: relative;
+		/*float: left;*/
+		margin-right: 1em;
+	}
+	/*.page-id-1077 .circle-small-1 {
+		bottom: 3em;
+		
+		
+	}
+	.page-id-1077 .three-circles {
+		float: right;
+	}
+	.page-id-1077 .two-circles {
+		float: right;
+	}*/
+
+	.page-id-1077 .circle-medium {
+		font-size: 0.8rem;
+	}
+	.page-id-1077 .paddingR-15em {
+		padding-right: 0;
+	}
+}
+
+@media all and (max-width: 62.5em) {
+	.page-id-1077 .vc_row-fluid .vc_span3:nth-of-type(odd) {
+		max-width: 18em;
+	}
+	.page-id-1077 .circle-small,
+	.page-id-1077 .circle-medium {
+		display: inline-block;
+		position: relative;
+		bottom: 1em;
+		left: 0.5em;
+		margin-bottom: 1em;
+	}
+	.page-id-1077 .circle-small-1 {
+		bottom: 3em;
+		/*float: none !important;*/
+		
+	}
+	.page-id-1077 .three-circles {
+		float: right;
+	}
+	.page-id-1077 .two-circles {
+		float: right;
+	}
+	
+	
+}
+
+@media all and (max-width: 48em) {
+
+	.page-id-1077 .circle-small {
+		float: left;
+	}
+}
+
+/* rates */
+.page-id-1079 .vc_row-fluid .vc_span6 {
+	margin-left: 0;
+	width: 50%;
+}
+
+/* plan your trip */
+.page-id-1073 .swiper-slide .content {
+	padding: 2em 6%;
+	height: 504px;
+	background: #e1bc00;
+	top: 0 !important;
+	left: 0%;
+}
+
+.page-id-1073 .swiper-slide .content h2 {
+	color: #fff;
+	margin-bottom: 0.5em;
+}
+
+.page-id-1073 .swiper-slide .content a {
+	font-size: 1.3em;
+	color: white;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+}
+
+.page-id-1073 .swiper-slide .content a:first-of-type {
+	padding-top: 0.5em;
+	margin-top: 1em;
+	margin-left: 3em;
+	margin-right: 3em;
+	border-top: 3px solid white;
+}
+
+.page-id-1073 .swiper-slide .content a:last-of-type {
+	font-size: 1em;
+}
+
+.page-id-1073 .swiper-slide .content a:last-of-type:hover {
+	color: #333;
+}
+
+@media all and (max-width: 81.25em) {
+	.page-id-1073 .swiper-slide {
+		background-size: auto 100%;
+	}
+
+	.page-id-1073 .swiper-slide .content {
+		width: 50%;
+		padding-left: 4.2em;
+		padding-right: 4.2em;
+	}
+	.page-id-1073 .swiper-slide .content h2 {
+		font-size: 2.5em;
+	}
+	.page-id-1073 .swiper-slide .content p {
+		font-size: 0.8em;
+	}
+}
+
+@media all and (max-width: 62.5em) {
+
+	.page-id-1073 .swiper-slide .content {
+		width: 100%;
+	}
+	.page-id-1073 .swiper-slide .content h2{
+		font-size:2em!important;	
+	}
+}
+@media all and (max-width: 690px) {
+	
+	
+}
+
+
+/* trails */
+.page-id-1075 .vc_row-fluid .vc_span6 {
+	margin-left: 0;
+	width: 50%;
+}
+
+.page-id-1075 .to-color-container img {
+	width: 100%;
+}
+
+/* snowshoe trails */
+.page-id-2424 .overlay h2 {
+	padding-top: 1.3em;
+}
+
+/* cross-country-ski-trails */
+.page-id-2417 .overlay h2 {
+	padding-top: 1.8em;
+	font-size: 2.7em;
+}
+@media all and (max-width:1300px){
+	.page-id-2417 .overlay h2 {
+		padding-top: 2.4em;
+		font-size:1.7em!important;
+	}	
+}
+@media all and (max-width:62.5em){
+	.page-id-2417 .overlay h2 {
+		padding-top: 2.4em;
+		font-size:2.7em!important;
+	}
+}
+
+
+/*things to do - all pages */
+/*.parent-pageid-1778 .vc_row-fluid [class*="vc_span"],
+.page-id-1778 .vc_row-fluid [class*="vc_span"] {
+	
+}*/
+.parent-pageid-1778 .vc_row-fluid .vc_span4,
+.page-id-1778 .vc_row-fluid .vc_span4 {
+	width: 33.33%;
+	margin-left: 0 !important;
+}
+
+/* things to do - cross country skiing */
+.page-id-1094 strong {
+	font-family: 'OpenSansBold';
+}
+
+.classic-skate .vc_span8 {
+	width: 66.833333%;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-size: auto 100%;
+}
+
+.classic-skate .vc_span4 {
+	float: right;
+}
+/* things to do - snowshoe */
+.parent-pageid-1978 .vc_row-fluid [class*="vc_span"],
+.page-id-1778 .vc_row-fluid [class*="vc_span"] {
+	margin-left: 0 !important;
+}
+.parent-pageid-1978 .vc_row-fluid .vc_span4,
+.page-id-1778 .vc_row-fluid .vc_span4 {
+	width: 33.33%;
+}
+
+.page-id-1978 object {
+	/*max-width: 140px;*/
+	width:120px;
+	height:120px;
+}
+
+.page-id-1978 .things-to-do-text {
+	font-size: 1.4em;
+	line-height: 0.9;
+	
+}
+
+/*things to do - fat bike*/
+.page-id-1922 object {
+	max-width: 130px;
+}
+.page-id-1922 .rentals object {
+	max-width: 105px!important;
+	padding-top: 1.3em;
+}
+
+.page-id-1922 .things-to-do-text {
+	font-size: 1.8em;
+	line-height: 0.9;
+}
+
+/* programs and lessons */
+.page-id-1077 .vc_row-fluid .vc_span6 {
+	margin-left: 0;
+	width: 50%;
+	background-size: 100% auto;
+}
+@media all and (max-width:62.5em){
+	.page-id-1077 .vc_row-fluid .vc_span6 {
+	width: 100%;	
+	}
+}
+
+/* rates pages */
+.page-id-1143 h2,
+.page-id-1147 h2 {
+	text-transform: uppercase;
+}
+

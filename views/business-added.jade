@@ -1,0 +1,14 @@
+extends layout
+
+block content
+
+ section.container
+  // Jumbotron Header
+  header.jumbotron.hero-spacer
+    h1 #{business.businessName} Added
+    p
+      | Thank you for adding your businesss to our directory
+    p
+      a.btn.btn-primary.btn-large(href='/all-businesses') View all Business
+      a.btn.btn-primary.btn-large(href='/edit-business/#{business._id}') Edit Your Business Details
+  hr

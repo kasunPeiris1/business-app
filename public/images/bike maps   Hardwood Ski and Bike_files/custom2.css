@@ -1,0 +1,952 @@
+/*
+╔╦╗┬ ┬┌─┐┌─┐┬─┐  ╔═╗┬ ┬┌─┐┬─┐┬┌─
+ ║ └┬┘│ ┬├┤ ├┬┘  ╚═╗├─┤├─┤├┬┘├┴┐
+ ╩  ┴ └─┘└─┘┴└─  ╚═╝┴ ┴┴ ┴┴└─┴ ┴
+================================
+	29/10/2014  | Kasun
+================================
+*/
+
+
+/*
+Site Wide
+=========
+*/
+
+html body #header-space { height: 161px !important; }
+#ajax-loading-screen{
+	display:none!important;
+}
+/*hiding H1*/
+body h1{
+	position: absolute!important;
+    top: -9999px!important;
+    left: -9999px!important;
+}
+
+.things-to-do-btn {
+	cursor: pointer !important;
+}
+
+.column-link {
+	z-index: 1000 !important;
+	cursor: pointer !important;
+}
+
+.hideonload{
+	display:none;
+}
+.hide{
+	display:none!important;
+}
+#weather div{
+	/*border:1px solid red;*/
+	margin:0 auto;
+}
+#mobile-search{
+	display: none!important;
+}
+/*
+News Ticker
+============
+*/
+.evo_metarow_details.evorow.evcal_evdata_row.bordb.evcal_event_details{ margin-top:-14em;}
+
+#mtphr-dnt-2327{
+	background:#ff0600!important;
+	padding: 0.5% 0;
+}
+.mtphr-dnt-tick-contents{
+	text-align:center;
+	font-family:'oswald';
+	font-size:1.2em;
+	font-weight:bold;
+
+	color:#fff!important;
+	text-transform: uppercase;
+}
+@media all and (max-width:1024px){
+	.mtphr-dnt-tick-contents{
+		font-size:0.7em;
+	}
+}
+
+.location_name,
+.forecast,
+.hours,
+.infos,
+.short_condition{display:none!important;}
+.time_symbol{
+	display:inline-block!important;
+	}
+.time_temperature{
+	margin-top:-10px;
+	font-weight:bold!important;
+}
+#wpc-weather{
+	position:absolute;
+	top:-3.2em;
+	display:inline-block!important;
+	text-align:center!important;
+	width:auto;
+	left:65%;
+}
+.wpc-last-update,
+.today{
+	/*border:1px solid red;*/
+	display:none!important;
+}
+.now{
+	background: rgba(255,255,255,0.6);
+	border-radius: 4px;
+}
+@media all and (max-width:93.5em){
+	#wpc-weather{left:60%;}
+}
+@media all and (max-width:81.25em){
+	#wpc-weather{left:50%;}
+}
+
+@media all and (max-width:65em){
+	#wpc-weather{display:none!important;}
+}
+
+/*
+SHOP PAGE
+===========
+*/
+.no-margin-left{
+	/*border:1px solid red;*/
+	margin-left:0!important;
+	width:51.2%!important;
+
+}
+
+/*
+TRAIL RATES
+===========
+*/
+.price-rate span{
+	font-weight:bold;
+}
+.price-rate span:last-of-type{
+	float:right;
+	color:black;
+}
+small{
+	font-size:0.9em;
+}
+
+.red{
+	float:left!important;
+	color:red!important;
+	padding-right:1%;
+}
+.hide-one .pricing-column:last-of-type{
+	display:none!important;
+}
+.50-row{
+	border:1px solid red!important;
+}
+/*
+Employment
+===========
+*/
+
+.page-id-2386 .post-meta{
+	display:none!important;
+}
+
+.page-id-2386 .post-content{
+	padding-right:5%!important;
+}
+.page-id-2386 .content-inner:nth-child(2){
+	/*border-top:1px solid #DDDDDD;*/
+}
+/*
+Contact
+
+========
+*/
+
+#eModal-2,#eModal-3,#eModal-4,#eModal-6{
+
+	z-index: 9999999999999!important;
+}
+#eModal-4{
+	padding:1% 0!important;
+	margin:0!important;
+	width:30%;
+}
+
+#eModal-3{
+	position:absolute!important;
+	top:10%!important;
+	bottom:auto!important;
+	width:40%!important;
+	z-index: 9999999999999!important;
+}
+
+@media all and (max-width:62.5em){
+	#eModal-3{
+
+		width:50%!important;
+		top:30%!important;
+	}
+
+	 #eModal-3{
+		pointer-events: none!important;
+	}
+}
+@media all and (max-width:30em){
+	#eModal-3{
+		width:80%!important;
+	}
+}
+#eModal-4 .emodal-content img,
+#eModal-3 .emodal-content img{
+
+	width:100%!important;
+}
+#emodal-overlay{
+	z-index: 99999!important;
+}
+.wpcf7-form .wpcf7-form-control:not(.wpcf7-submit){
+
+	width:100%!important;
+}
+.wpcf7-form p {
+	margin:0 auto!important;
+}
+/*
+ Plan Your Trip
+ ==============
+ */
+.page-id-1073 .price-rate{
+	padding-bottom:2%!important;
+}
+
+/*
+ Top Search
+ ==============
+ */
+#top input{
+	background:rgba(255,255,255,0.8);
+	border-radius:3px;
+	font-family:'Roboto';
+	font-size:0.9em;
+}
+/*
+ Header Socail Icons
+ ===================
+ */
+@media all and (max-width:64em){
+	#header-secondary-outer #social{
+		display:none!important;
+	}
+}
+
+
+/*
+ EVENTS
+ =====================
+ homePage .home.page.page-id-1039
+ */
+.event_description{
+	display:block!important;
+	margin-bottom:5%;
+	padding-top:2%!important;
+}
+.evcal_list_a .desc_trig .sin_val  .featured_event{
+	padding-top:5%!important;
+
+}
+.eventon_full_description{
+	/*margin-top:-3em!important;*/
+}
+div[id^=evc_]{
+	border:none!important;
+	pointer-events: none!important;
+	z-index: 1;
+	float: right;
+	padding-top:2%!important;
+	width: 50%!important;
+}
+@media all and (max-width:62.5em){
+	.page-id-1874 div[id^=evc_]{
+		width: 100%!important;
+	}
+	#evcal_list .eventon_list_event .event_description .evcal_gmaps {
+		height: auto!important;
+	}
+}
+.evo_metarow_fimg{
+
+	width:50%!important;
+}
+.evo_metarow_details{
+
+	width: 50%;
+	float: right;
+	z-index: 1;
+	margin-top: -10em;
+}
+
+
+
+.evcal_desc{
+	/*margin-left:5%!important;*/
+	/*display:table!important;*/
+	}
+.evcal_event_title{
+	text-align:left!important;
+	font-family:'Langdon'!important;
+ 	font-size:3em!important;
+ 	color:black!important;
+ 	display:table-footer-group!important;
+ 	text-transform:uppercase!important;
+ 	border-top:1px solid #ccc!important;
+	border-bottom:1px solid #ccc!important;
+
+ 	}
+.evcal_event_subtitle{
+	text-align:left!important;
+	font-family:'Langdon'!important;
+	text-transform:uppercase!important;
+ 	color:#1b91d8!important;
+ 	font-size:4em!important;
+ 	margin:0 auto!important;
+	display:table-header-group!important;
+	}
+
+@media all and (max-width:1300px){
+	.evcal_event_title{ font-size: 2em!important;}
+	.evcal_event_subtitle{ font-size:3em!important;}
+}
+@media all and (max-width:1024px){
+	.eventon_desc_in p {  font-size:0.7em;  margin-top:2em!important;}
+	.page-id-1874 .eventon_desc_in p {  font-size:0.9em!important;  margin-top: 2em!important;}
+}
+
+
+.desc_trig,
+#evcal_list,
+.event_description .evcal_eventcard,
+.evo_metarow_details,
+.event_description{
+	background:white!important;
+	border:0px!important;
+}
+
+.evo_h3,
+.evcal_evdata_icons,
+.evcal_cblock,
+.evcal_month_line,
+.evo_metarow_time,
+.eventon_desc_in .nectar-button{
+	display:none!important;
+}
+.eventon_desc_in p {
+	/*border:1px solid red;*/
+	font-size:1.1em!important;
+}
+.eventon_desc_in{
+	/*margin-top:-5.5em!important;*/
+	/*margin-top:-1em;*/
+}
+.ev_more_text{
+	border:1px solid black;
+	color:black!important;
+	font-weight:bold;
+	padding:0 2%;
+	border-radius:2px;
+	text-transform:uppercase;
+	background:white!important;
+}
+.ev_more_text:hover{
+	transition:0.5s all ease-in-out;
+	background:black!important;
+	color:white!important;
+}
+ div.evo_metarow_fimg.evorow.evcal_evdata_img.evo_noclick{
+ 	height:490px;
+ }
+  span.ev_ftImg{
+  	display: none!important;
+  }
+#evcal_cur{
+	padding:0 3%;
+	color:#333!important;
+}
+#evcal_prev,
+#evcal_next{
+	color:black!important;
+	border-color: #3d3d3d!important;
+}
+#evcal_prev:hover,
+#evcal_next:hover{
+	background:#ccc;
+}
+ @media all and (max-width:64em){
+ 	.evcal_evdata_row .evcal_evdata_cell{
+ 		padding:0!important;
+ 	}
+	.evcal_event_title{
+		font-size:1.8em!important;
+		line-height:1!important;
+	}
+	.evcal_event_subtitle{
+		font-size:2em!important;
+		line-height:1!important;
+	}
+	.evo_metarow_details{
+		/*margin-top: -15em!important;*/
+		margin-top: -21.5em!important;
+	}
+	.eventon_events_list .eventon_list_event .evcal_desc{
+		padding:0!important;
+		padding-left:5%!important;
+	}
+	.evo_metarow_fimg{
+		height:400px!important;
+		/*margin-bottom:3em;*/
+	}
+
+}
+
+/* ---------- */
+
+@media all and (max-width:43em){
+	.evo_metarow_fimg{
+		display:none!important;
+	}
+	.evo_metarow_details{
+		width: 100%;
+	}
+	.evo_metarow_details{
+		margin-top: 0em!important;
+	}
+	div[id^=evc_]{
+		border:none!important;
+		pointer-events: none!important;
+		z-index: 999999999!important;
+		float: none!important;
+		padding-top:1%!important;
+		width: 100%!important;
+
+	}
+	.eventon_events_list .eventon_list_event .evcal_desc{
+		padding:0!important;
+	}
+	.evo_metarow_details{
+		margin-top:-2em!important;
+	}
+	.page-id-1874 .evo_metarow_details{
+		margin-top: -2em!important;
+	}
+	.evo_metarow_details p {
+		font-size:0.85em!important;
+	}
+	.events-icon{
+		/*border:1px solid red;*/
+		height:90px!important;
+	}
+
+}
+.evo_sort_btn{ display:none!important;}
+
+
+
+@media all and (min-width:1000px) and (max-width:1024px){
+	.page-id-1874 .evo_metarow_fimg{ width:100%!important; }
+	.page-id-1874 .evcal_desc{ margin-left:0!important;}
+	.eventon_events_list .eventon_list_event .evcal_desc{ padding-left:0!important;}
+}
+/*
+NEWS
+====
+ */
+span[class^="meta"]{
+	display:none;
+}
+.nectar-love-wrap{
+	margin-top:-0.8em;
+	line-height:4;
+	background:#1b91d8;
+}
+
+.icon-salient-heart,
+.nectar-love-count{
+	display:inline-block;
+}
+.page-id-1874 .tbrow{
+	display:none!important;
+}
+.evo_metarow_time_location{
+	cursor: pointer!important;
+	z-index: 9999999!important;
+}
+/*single event page*/
+.single-ajde_events h1.entry-title{
+	position: relative!important;
+	top:0!important;
+	left:0!important;
+}
+.single-ajde_events #ajax-content-wrap .container-wrap{padding-bottom: 55px}
+.single-ajde_events #ajax-content-wrap .container.main-content{
+	background:white!important;
+	padding:5%;
+}
+.single-ajde_events #single-below-header{
+	display:none!important;
+}
+.single-ajde_events .post-content p:last-child a,
+.single-ajde_events .wpb_wrapper p:last-child a{
+	border:1px solid #1b91d8;
+	padding:1%;
+	border-radius:3px;
+}
+.single-ajde_events .post-content p:last-child a:hover,
+.single-ajde_events .wpb_wrapper p:last-child a:hover{
+	background:#1b91d8;
+	color:white;
+}
+/*
+Trail Rates
+===========
+ */
+#tablepress-1 {
+	width: 90%;
+	margin: 0 auto;
+	padding-left: 5%;
+	padding-right: 5%;
+	font-weight:bold!important;
+
+	/*border:1px solid red;*/
+}
+#tablepress-1 tbody{
+	font-size:1.2em!important;
+}
+#tablepress-8 th,
+#tablepress-8 td,
+#tablepress-6 th,
+#tablepress-6 td,
+#tablepress-4 th,
+#tablepress-4 td,
+#tablepress-1 th,
+#tablepress-1 td {
+	padding: 1.2em 1em;
+}
+
+.tablepress tr {
+	border-top: none;
+}
+
+#tablepress-1 tr:nth-of-type(odd) {
+	/*background: #eef;*/
+}
+
+#tablepress-1 tr:nth-of-type(odd):hover {
+	/*background: #eef !important;*/
+}
+
+.tablepress thead th {
+	color: #fff;
+	border-right: 1px solid white;
+	background: #1b91d8 !important;
+	text-transform: uppercase;
+	font-family: 'Langdon';
+	font-size: 1em;
+}
+
+#tablepress-1 td {
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-bottom: 1px solid #ddd;
+}
+
+.tablepress thead th:last-child {
+	border-right: none;
+}
+
+.tablepress thead tr .column-1 {
+	padding-left: 1em !important;
+}
+.tablepress .odd td {
+	background-color: #fff !important;
+}
+.tablepress .row-hover tr:hover td {
+	/*background-color:  #fff !important;*/
+}
+#tablepress-1 tbody tr td:first-of-type {
+	padding-left: 1em !important;
+}
+
+#tablepress-1 caption a {
+	display: none;
+}
+#tablepress-1 tbody tr ~ td {
+	font-weight: normal !important;
+}
+#tablepress-1 tbody tr td:nth-of-type(n+2) {
+	text-align: center;
+	font-weight: bold;
+}
+
+
+
+.display-none{
+	display:none!important;
+}
+#tablepress-1 > tbody > tr.row-16 > td > span,
+#tablepress-1 > tbody > tr.row-13 > td > span,
+#tablepress-1 > tbody > tr.row-10 > td > span,
+#tablepress-1 > tbody > tr.row-7 > td > span,
+#tablepress-1 > tbody > tr.row-4 > td > span{
+	display:none!important;
+}
+/*
+ RACE RESULTS PAGE
+ =================
+ */
+
+#tablepress-4 th,
+#tablepress-4 td{
+	font-size:2em;
+}
+#tablepress-4_paginate,
+#tablepress-4_info,
+#tablepress-4_filter{
+	display:none!important;
+}
+/*
+ TRAIL CONDITIONS
+ ================
+ */
+#tablepress-2{
+	padding:5% 0!important;
+
+}
+#tablepress-2 .column-1{
+	font-weight:bold;
+}
+.tablepress .row-hover tr:hover td{
+	background:white!important;
+}
+
+.eModal-3{
+	pointer-events: none!important;
+}
+
+/*
+ Jquery UI
+ =========
+ */
+
+.tooltips{
+	font-weight:bold;
+}
+
+/*
+ Intractive Map
+ ===============
+ */
+
+.intractive-overlay {
+	background:transparent;
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+}
+.mapborder{
+	border:5px solid #333!important;
+}
+.legeand{
+	padding-top:1%;
+	/* 	border:3px solid silver; */
+}
+.legeand p{
+	padding:0 4%;
+
+}
+
+.legeand p a{
+	width:80%;
+	padding:2%!important;
+	font-weight:bold;
+	padding-left:5%!important;
+	border:2px solid rgba(28,148,217,1);
+	border-radius:3px;
+	margin:2%;
+}
+
+.legeand1 p a{
+	width:60%;
+	padding:2%!important;
+	font-weight:bold;
+	padding-left:5%!important;
+	border:2px solid rgba(28,148,217,1);
+	border-radius:3px;
+	margin:2%;
+
+}
+.legeand1 p .downlaod{
+	/*width:20%;*/
+	display: inline-block;
+	font-size:12px;
+}
+.legeand1 p a.full{
+	width:100%;
+}
+.border-class{
+	margin:2%!important;
+	/*float:right;*/
+	text-align:center;
+	/*padding:0!important;*/
+}
+.legeand p a:hover{
+	background:rgba(28,148,217,1);
+	color:white!important;
+}
+.legeand1 p a:hover{
+	background:rgba(28,148,217,1);
+	color:white!important;
+}
+
+.legeand1 p a,
+.legeand p a,
+.legeand p img,
+.legeand1 p img{
+	color:black;
+	display: inline-block;
+}
+.legeand p a{
+	font-size:0.8em!important;
+	/*padding-bottom:5%!important;*/
+}
+.legeand p img
+.legeand1 p img{
+	float:left;
+	padding-right:3%!important;
+	margin-top:1.5em;
+
+}
+.legeand p a:hover{
+	color:gray;
+}
+.map1 img{
+	display:inline-block;
+}
+.map-controles{
+	text-align:center;
+	position:absolute;
+	width:52px!important;
+	padding:1%!important;
+	right:0;
+	background:rgba(28,148,217,0.7);
+	z-index:999;
+}
+
+.map-controles a{
+	color:white!important;
+	font-weight:bold;
+	padding:10%!important;
+	position:relative;
+}
+#snowshoe,#skiTrail{
+	/*border:1px solid red;*/
+	width:100%;
+	height:600px;
+}
+.page-id-2881 .downlaod {
+	margin-left: 3em;
+}
+
+.nectar-slider-wrap {
+	margin-top: 0 !important;
+}
+
+@media all and (max-width:64em){
+	#skiTrail,#snowshoe{
+		width:100%;
+		height:500px;
+	}
+}
+@media all and (max-width:30em){
+	#skiTrail,#snowshoe{
+		width:100%;
+		height:300px;
+	}
+}
+
+/*ski*/
+
+@media all and (max-width:1300px){
+	.overlay-container-small h2 {
+		font-weight:5em!important;
+	}
+}
+
+/*
+ Season
+ ===============
+ */
+.pricing-column{
+
+	border:1px solid #e4e4e4;
+}
+@media all and (min-width:1000px) and (max-width:1300px){
+	.pricing-column h3{ font-size:1.1em;}
+	.pricing-column .pricing-column-content{ font-size:0.8em;}
+}
+@media all and (min-width:1300px){
+	.pricing-column h3{ font-size:1.4em; }
+}
+@media all and (min-width:480px){
+	.pricing-column h4{ font-size:2.5em!important;}
+}
+.centred-Icon-set1 .col.span_12 ,
+.centred-Icon-set .col.span_12 {
+	/*border:1px solid red!important;*/
+	margin-left:5em;
+}
+@media all and (max-width:1300px){
+	.centred-Icon-set .col.span_12 .vc_span2,
+	.centred-Icon-set1 .col.span_12 .vc_span2{
+		/*border:1px solid red!important;*/
+		padding:1%;
+		margin:2%;
+	}
+	.centred-Icon-set .col.span_12 ,
+	.centred-Icon-set1 .col.span_12{
+		margin-left:0;
+	}
+	.centred-Icon-set .things-to-do-text,
+	.centred-Icon-set1 .things-to-do-text{
+		font-size:1.2em!important;
+		text-align:center!important;
+	}
+	.page-id-1073 .image-hours {
+		height:285px!important;
+	}
+}
+/* things to do*/
+@media all and (max-width:1000px) {
+	.page-id-1073 .image-hours {
+		width:100%!important;
+	}
+	.page-id-1073 .image-hours-2 {
+		display: none;
+	}
+	.page-id-1073 .learn-more a {
+		text-align: center!important;
+	}
+}
+
+@media all and (max-width:62.5em){
+
+	.blue-bg .icon-container{
+		display:none;
+	}
+
+	.centred-Icon-set1 .col.span_12 ,
+	.centred-Icon-set .col.span_12 {
+		/*border:1px solid red!important;*/
+		margin-left:0;
+	}
+}
+.red-price .pricing-column:nth-child(3) .interval,
+.red-price1 .pricing-column:nth-child(3) .interval,
+.red-price2 .pricing-column:nth-child(3) .interval,
+.red-price3 .pricing-column:nth-child(3) .interval,
+.red-price4 .pricing-column:nth-child(3) .interval{color:red!important;}
+/* Directions */
+@media all and (min-width:1000px) {
+	.page-id-1073 .directions-button a {
+		margin-top: 3.7em;
+	}
+	.page-id-1092 .why-hardwood-reasons {
+		margin-top: 1.5em;
+	}
+	/* Grooming */
+
+	.page-id-1107 .our-equipment {
+		height: 258px!important;
+	}
+}
+/* adult programs */
+.line-height {
+	line-height: 1.2;
+	float: right;
+}
+.line-height-2 {
+	margin-top: 1em!important;
+}
+
+.page-id-1039 .eventon_desc_in p {  font-size:1em;  margin-top:0em!important;}
+
+#evcal_list {
+	height: 100% !important;
+}
+
+.ajde_evcal_calendar .calendar_header .evcal_arrows .fa {
+	color: #666 !important;
+}
+
+.evo_metarow_gmap {
+	display: none;
+}
+
+.evcal_desc2.evcal_event_title {
+	font-size: 40px !important;
+}
+
+.ev_more_text,
+.ev_more_arrow,
+.evcal_evdata_row.evo_clik_row,
+.evo_metarow_time_location{
+	display: none !important;
+}
+
+.eventon_list_event {
+	position: relative;
+}
+
+.evcal_list_a {
+	position: absolute !important;
+	top: 0;
+	right: 0;
+	width: 50% !important;
+	z-index: 1000;
+	border: none !important;
+}
+
+.eventon_full_description {
+	padding-top: 15px;
+}
+
+.evcal_event_details .evcal_evdata_cell.shorter_desc {
+	height: 145px !important;
+}
+
+.event-button {
+	position: absolute;
+	bottom: 0;
+	z-index: 999999;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	display: block;
+	text-align: center !important;
+}
+
+.evo_metarow_details {
+	padding-bottom: 60px !important;
+}
+
+.nectar-social {
+	display: none !important;
+}

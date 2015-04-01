@@ -1,0 +1,45 @@
+extends layout
+
+block content
+
+ section.container
+  // Jumbotron Header
+  header.jumbotron.hero-spacer
+    h1 All Business
+    p
+      | Today we have access to more business information than ever before, information that can be key to uncovering opportunities and developing successful engagement with prospects. With an ocean of data to explore, how do you separate the meaningful from the menial?
+    p
+      a.btn.btn-primary.btn-large(href='/add-business') Add Your Business Now!
+  hr
+  // Title
+  .row
+    .col-lg-12
+      h2 Current Businesses
+  // /.row
+  // Page Features
+  .row.text-center
+    each business, i in busines
+     .col-md-3.col-sm-6.hero-feature
+      .thumbnail
+        img(src='#{business.businessLogoUrl}', alt='')
+        .caption
+          h3 #{business.businessName}
+          p.text-left #{business.businessDescription}
+          p.text-left #{business.businessAddress}
+          p.text-left #{business.businessOwner}
+          a.text-left.displayBlock(href='tel:#{business.businessPhoneNumber}')
+            i.fa.fa-phone
+            | #{business.businessPhoneNumber}
+          a.text-left.displayBlock(href='mailto:#{business.businessEmail}') 
+            i.fa.fa-envelope-o
+            | #{business.businessEmail} 
+          a.text-left.displayBlock(href='#{business.businessWebsite}') 
+            i.fa.fa-home
+            | #{business.businessWebsite}
+          a.text-left(href='#{business.businessSocialFB}')
+            i.fa.fa-facebook
+          a.text-left(href='#{business.businessSocialLI}')
+            i.fa.fa-linkedin
+          hr
+          a.btn.btn-large.btn-block.btn-default(href='/edit-business/#{business._id}') Edit
+          a.btn.btn-primary.btn-large.btn-block.btn-danger(href='/delete-business/#{business._id}' onclick='return confirm(" Are You Sure You Want to Delete Your Business ?")') Delete

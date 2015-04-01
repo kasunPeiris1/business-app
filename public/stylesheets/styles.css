@@ -1,0 +1,25 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+a.displayBlock{display:block!important;}
+
+.navbar-brand>img{
+	margin-top: -0.8em!important;
+	width: 45px;
+	height: 45px;
+}
+.block{
+	display: block;
+	font-weight: bold;
+	color: white;
+}
+@media all and (max-width:768px){
+	.block{
+		display: none!important;
+	}
+}

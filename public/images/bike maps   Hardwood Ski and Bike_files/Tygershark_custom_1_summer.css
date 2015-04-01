@@ -1,0 +1,204 @@
+/*
+╔╦╗┬ ┬┌─┐┌─┐┬─┐  ╔═╗┬ ┬┌─┐┬─┐┬┌─
+ ║ └┬┘│ ┬├┤ ├┬┘  ╚═╗├─┤├─┤├┬┘├┴┐
+ ╩  ┴ └─┘└─┘┴└─  ╚═╝┴ ┴┴ ┴┴└─┴ ┴
+================================
+25/03/2015 | Kasun
+================================
+Unique classes and ID's for Summer
+
+Header : #summer_header
+Body   : #summer
+Footer : .footer_summer 
+Brown  : #9d4e11
+*/
+
+/*General*/
+
+#summer_header .body-bg {
+	background-image: url('/wp-content/uploads/2015/03/hardwood-summerbg2.jpg');
+	background-position: 0 0;
+	background-size: 100% auto;
+	/*background-repeat: no-repeat;*/
+}
+.background-properties{
+	background-repeat:no-repeat;
+	background-size:cover!important;
+}
+
+#summer_header #header-outer{
+	background:url('/wp-content/uploads/2015/03/header-bg.jpg')!important;
+}
+#summer_header .icon-angle-down:hover{
+	color:brown!important;
+}
+/*
+ HOME PAGE
+ =========
+ */
+body.home #summer h1{
+	position: relative!important;
+	top:0!important;
+	left:0!important;
+}
+
+/*
+ FOOTER
+ ======
+ */
+
+#footer-outer.footer_summer,#footer-outer.footer_summer a{
+	background:#000;
+	color:#fff;
+}
+#footer-outer.footer_summer a:hover{
+	color:#e2c005;
+}
+
+#footer-outer.footer_summer h3{
+	color:#e2c005;
+	border-bottom: 1px solid white;
+}
+
+#footer-outer.footer_summer .col ul li{
+	border-bottom:1px solid rgba(255,255,255,0.3)!important;
+}
+
+/*
+ EVENTS
+ ======
+ */
+.evcal_evdata_cell.shorter_desc{
+	overflow:scroll!important;
+	-ms-overflow-style: none!important;
+	overflow: -moz-scrollbars-none;
+	min-height:250px!important;
+}
+.evcal_evdata_cell.shorter_desc::-webkit-scrollbar { width: 0 !important }
+
+#summer .evcal_desc.evo_info .evcal_event_subtitle,
+#summer .evcal_desc.evo_info .evcal_event_title a,
+#summer .eventon_desc_in a{
+	color:#9d4e11!important;
+} 
+#summer .evcal_event_details .event-button a{
+	border:2px solid #9d4e11!important;
+}
+#summer .evcal_event_details .event-button a span{
+	color:#9d4e11!important;
+}
+#summer .evcal_event_details .event-button a:hover{
+	background:#9d4e11!important;
+}
+#summer .evcal_event_details .event-button a:hover span{
+	color:white!important;
+}
+@media all and (max-width:1000px){
+	#summer .eventon_desc_in{
+		/*margin-top:1.5em;*/
+		height:250px;
+		overflow-y:scroll;
+	}
+	.evcal_evdata_cell.shorter_desc{
+		margin-top:3em;
+	}
+	#summer .eventon_desc_in::-webkit-scrollbar { width: 0 !important }
+}
+/*
+ THINGS TO DO
+ ============ 
+ */
+.page-id-4232 .vc_row-fluid .vc_span4,
+.page-id-4230 .vc_row-fluid .vc_span4,
+.page-id-4228 .vc_row-fluid .vc_span4,
+.page-id-4074 .vc_row-fluid .vc_span4{
+	width: 33.33%;
+	margin-left: 0 !important;
+	margin-bottom:0!important;
+}
+
+
+/*
+ WHY HARDWOOD
+ ============
+ */
+.page-id-4072 #summer .overlay h2{
+	font-size: 2.5em;
+}
+/*
+ RATES
+ =====
+ */
+.page-id-1179 .vc_row-fluid .vc_span4{
+	width: 33.33%;
+	margin-left: 0 !important;
+	margin-bottom:0!important;
+}
+
+#summer .pricing-column h3{
+	color:#9d4e11!important;
+}
+#summer .pricing-column .interval{
+	display: none!important;
+}
+#summer thead th{
+	background:#9d4e11!important;
+}
+#summer tr td{
+	font-size: 1.3em;
+	font-weight:bold;
+}
+
+/*
+ RATAILS
+ =======
+ */
+.page-id-4107 .vc_row-fluid .vc_span6 {
+	width:50%;
+	margin-left:0!important;
+	margin-bottom:0!important;
+}
+
+/*
+ NEWS
+ =======
+ */
+
+#summer .nectar-love-wrap{
+	background:#9d4e11!important;
+}
+#summer .nectar-love{
+	color:#ccc!important;
+}
+#summer .nectar-love:hover{
+	background:#9d4e11!important;
+	color:white!important; 
+}
+#summer .icon-salient-heart{
+	color:white!important;
+}
+#summer .whole-link{
+	background:#9d4e11!important;
+}
+#summer .whole-link:hover{
+	background:#000!important;
+}
+#summer .article-content-wrap a{
+	color:#9d4e11!important;
+}
+/*
+ PROGRAM AND LESSONS
+ ===================
+ */
+.program-btn{
+	cursor:pointer!important;
+}
+
+.page-id-1177 .vc_row-fluid .vc_span6{
+	width:50%;
+	margin-left:0!important;
+	margin-bottom:0!important;
+}
+.page-id-1177 #summer .overlay h2{
+	font-size: 2.5em;
+}

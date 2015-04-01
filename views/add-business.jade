@@ -1,0 +1,64 @@
+extends layout
+
+block content
+ 
+ section.container
+  header.jumbotron.hero-spacer
+    h1
+      | Add Businesses
+      p Please Enter your Business Details
+    hr
+    section.row
+      section.col-lg-12
+        h3 Your Business Information
+      hr
+    section.row
+      form.form-horizontal.col-md-12.col-lg-12(method='post', action='/add-business', enctype='multipart/form-data')
+        section.col-sm-12.col-md-6.col-lg-6
+          .control-group
+            label.control-label(for='business_name') Business Name
+            .controls
+              input#business_name.form-control(type='text', name='business_name', placeholder='Enter Your Business Name')
+          .control-group
+            label.control-label(for='business_owner') Business Owner
+            .controls
+              input#business_owner.form-control(type='text', name='business_owner', placeholder='Enter Your Business Name')
+          .control-group
+            label.control-label(for='business_description') Business Description
+            .controls
+              input#business_description.form-control(type='text', name='business_description', placeholder='Enter Your Business Description')
+          .control-group
+            label.control-label(for='business_address') Business Address
+            .controls
+              input#business_address.form-control(type='text', name='business_address', placeholder='Enter Your Business Address')
+          .control-group
+            label.control-label(for='business_phone') Business Phone Number
+            .controls
+              input#business_phone.form-control(type='text', placeholder='Enter Your Phone Number', name='business_phone')
+        section.col-sm-12.col-md-6.col-lg-6
+          .control-group
+            label.control-label(for='business_logo') Business Logo
+            .controls
+              input#business_logo.form-control(type='file', name='business_logo', placeholder='Enter Your Business Logo')
+          .control-group
+            label.control-label(for='business_email') Business Email Address
+            .controls
+              input#business_email.form-control(type='text', name='business_email', placeholder='Enter Your Business Email')
+          .control-group
+            label.control-label(for='business_web') Business Website
+            .controls
+              input#business_web.form-control(type='text', name='business_web', placeholder='Enter Your Business Website')
+          .control-group
+            label.control-label(for='business_fb') Business Facebook
+            .controls
+              input#business_fb.form-control(type='text', name='business_fb', placeholder='Enter Your Business Facebook')
+          .control-group
+            label.control-label(for='business_web') Business Linkedin
+            .controls
+              input#business_web.form-control(type='text', name='business_li', placeholder='Enter Your Business Linkedin')
+        section.col-sm-12.col-md-12.col-lg-12
+          hr
+          .control-group
+            .controls
+              button.btn.btn-large.btn-primary(type='submit') Save changes
+              button.btn.btn-large(type='button' onclick='history.go(-1);') Cancel

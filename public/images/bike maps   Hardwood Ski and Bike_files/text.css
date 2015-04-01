@@ -1,0 +1,93 @@
+/* alignment */
+.textL {
+	text-align: left;
+}
+.textC {
+	text-align: center;
+}
+.textR {
+	text-align: right;
+}
+.textU{
+	border-bottom:1px solid #1b91d8;
+	padding-bottom:2px;
+	color: #1b91d8;
+	font-size: 1.5em;
+}
+#summer .textU{
+	border-bottom:1px solid #9d4e11;
+	padding-bottom:2px;
+	color: #9d4e11;
+	font-size: 1.5em;
+}
+/* sizing */
+.size_6,
+h2.size_6 {
+	font-size: 6em;
+}
+
+.size_4,
+h2.size_4 {
+	font-size: 4em;
+}
+.size_0_8 {
+	font-size: 0.8em
+}
+
+.size_1_3 {
+	font-size: 1.3em;
+}
+
+.size_1_5 {
+	font-size: 1.5em;
+}
+
+.size_1_8 {
+	font-size: 1.8em;
+}
+
+.text-white {
+	color: #fff;
+}
+
+.text-blue {
+	color: #1b91d8;
+}
+.text-brown {
+	color: #9d4e11;
+}
+
+
+.text-black {
+	color: #000;
+}
+.text-grey {
+	color: #6B6B6B;
+}
+
+
+/* font */
+.langdon {
+	font-family: 'Langdon';
+	text-transform: uppercase;
+}
+.oswald {
+	font-family: 'Oswald';
+	/*font-size: 3.5em;*/
+	text-transform: uppercase;
+}
+.roboto {
+	font-family: 'Roboto';
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+
+/* text transform */
+.text-upper {
+	text-transform: uppercase;
+}
+.text-normal {
+	text-transform: none;
+}
+

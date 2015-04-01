@@ -1,0 +1,157 @@
+/*footer*/
+#text-2  {
+	text-align: left;
+	margin-right: 1em;
+}
+
+#text-2 img {
+	width: 300px;
+}
+.textwidget > p {
+	line-height: 1.2;
+}
+#footer-outer .widget h3 {
+	border-bottom: 1px solid black;
+	width: 100%;
+	padding-bottom: 0.5em;
+}
+#footer-outer #copyright li a{
+	color: #fff;
+}
+#footer-outer #copyright li a:hover {
+	color: #447dac;
+}
+#footer-outer #copyright li a {
+	display: inline-block;
+	margin: 0 auto;
+}
+
+#footer-outer #social li {	
+   width: 33px;
+   margin-top: 9px;
+   margin-bottom: 9px;
+}
+#text-6 .textwidget p{
+	padding:0 !important;
+}
+#text-6 .textwidget p:nth-child(odd){
+	font-weight:bold;
+	padding:1% 0;
+}
+
+/*rentals rates page*/
+/*table*/
+#tablepress-4,
+#tablepress-1 {
+	width: 90%;
+	margin: 0 auto;
+	padding-left: 5%;
+	padding-right: 5%;
+	font-size: 0.5em !important;
+	/*border: 1px solid #ddd;*/
+}
+#tablepress-4 th,
+#tablepress-4 td,
+#tablepress-1 th,
+#tablepress-1 td {
+	padding: 1.2em 1em;
+}
+
+.tablepress tr {
+	border-top: none;
+}
+
+.tablepress thead th {
+	color: #fff;
+	border-right: 1px solid white;
+	background: #1b91d8 !important;
+	text-transform: uppercase;
+	font-family: 'Langdon';
+	font-size: 1em;
+}
+#tablepress-4 td,
+#tablepress-1 td {
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-bottom: 1px solid #ddd;
+
+}
+
+.tablepress thead th:last-child {
+	border-right: none;
+}
+
+ .tablepress thead tr .column-1 {
+ 	padding-left: 1em !important;
+ }
+ .tablepress .odd td {
+	background-color: #fff !important;
+}
+
+
+#tablepress-1 tbody tr td:first-of-type {
+	padding-left: 1em !important;
+}
+#tablepress-4 caption a,
+#tablepress-1 caption a {
+	display: none;
+}
+#tablepress-1 tbody tr ~ td {
+	font-weight: normal !important;
+}
+#tablepress-1 tbody tr td:nth-of-type(n+2) {
+	text-align: center;
+	font-weight: bold;
+
+}
+/*Group booking*/
+.wpcf7-list-item  {
+	display: block;
+}
+/*things to do */
+/*image things to do skiing*/
+
+.img-with-animation.things_to_do_skiing {
+	width: 100% !important;
+}
+
+@media all and (min-width: 40em) {
+	#tablepress-1 {
+	font-size: 0.8em !important;
+}
+
+#tablepress-1 thead th {
+	font-size: 0.8em;
+}
+}
+@media all and (min-width: 48em) {
+	#tablepress-1 {
+	font-size: 1em;
+}
+#tablepress-8 thead th,
+#tablepress-6 thead th,
+#tablepress-4 thead th,
+#tablepress-1 thead th {
+	font-size: 1.5em;
+}
+	
+	#text-2 img {
+		width: auto;
+	}
+}
+@media all and (min-width: 62.5em) {
+	
+	#text-2 img {
+		float: right;
+	}
+	#tablepress-1 {
+	font-size: 1em !important;
+}
+
+
+}
+
+@media all and (min-width: 75em) {
+	
+}

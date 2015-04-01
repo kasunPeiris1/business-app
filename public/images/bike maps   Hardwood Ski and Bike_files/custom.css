@@ -1,0 +1,162 @@
+ /* homepage */
+.swiper-slide {
+	background-size: 100% auto;
+	top: 37px;
+}
+
+#home-slider .vc_span3 {
+	background-position: 0 0;
+}
+
+/* policies */
+.page-id-1590 .to-color-text {
+	font-size: 2em;
+	line-height: 1.3;
+}
+
+.cff-wrapper {
+	overflow: hidden;
+}
+
+.cff-wrapper #cff {
+	overflow-y: scroll;
+	height: 280px;
+	margin-left: 20px;
+	padding-right: 20px;
+}
+
+#recent-posts-4 h4 {
+	display: none;
+}
+.page-id-1167 #tablepress-5 caption a {
+	display: none;	
+}
+.page-id-2386 .article-content-wrap {
+	padding-left: 5%;
+	padding-right: 5%;
+}
+/*FOR LINKS */
+
+a object {
+	pointer-events: none;
+}
+
+
+/* EVENTS */
+
+#evcal_list .eventon_list_event .event_description .evcal_gmaps {
+	height: 50px!important;
+}
+
+.page-id-1075 .vc_span12 {
+	background-color: transparent!important;
+}
+
+/* CONTACT US FOOTER */
+body .emodal.theme-1.responsive.medium.custom-position {
+	bottom: 0!important;
+	top: auto!important;
+
+}
+
+.footerFL{
+width:35%;
+float:left;
+text-align: left;
+font-weight: 100;
+
+}
+
+.footerFR{
+width:60%;
+float:right;
+text-align:right;
+font-weight: 100 !important;
+text-align:right; 
+}
+#footerWidget3 p{
+	height:auto !important;
+	border-bottom:thin solid #E8E8E8;
+ 	height: 50px !important;
+
+}
+.eventon_fc_days p{
+	height:70px !important;
+	overflow:hidden !important;
+	font-weight:120 !important;
+	font-size:20px !important;
+}
+
+.eventon_fc_days #event_item{
+	display:none !important; 
+	/* 
+	font-weight:100 !important;
+	font-size:10px !important;
+	*/
+}
+
+#evcal_calendar_1 #evcal_list{
+	/*width:100% !important;*/
+	overflow-y:scroll;
+	height:600px;
+	padding-top: 50px;
+}
+.eventon_list_event .no_events{
+	padding-top:45px !important; 
+}
+#evcal_calendar_1 .eventon_fullcal{
+	margin:20px auto !important;
+}
+/*RESPONSIVE*/
+
+/*
+@media all and (min-width: 1300px) {
+	.page-id-1039 .ajde_evcal_calendar .eventon_events_list p {
+		margin-top: -4em!important; 
+	}
+}
+*/
+
+html body .event_description .bordb, #evcal_list .bordb {
+	background: none !important;
+}
+
+.event-button {
+	display: none;
+}
+
+.single-ajde_events .event-button {
+	display: block;
+}
+
+@media all and (max-width: 1000px) {
+.paddingCleaner div {
+	padding-left:0px !important;
+}
+#evcal_calendar_1 #evcal_list{
+	/*width:100% !important;*/
+	overflow:hidden;
+	height:auto !important;
+	padding-top: 0px;
+}
+.evcal_desc .evcal_event_title{
+	font-size: 21px !important;
+}
+
+@media all and (max-width: 690px) {
+.full-width-section > .span_12 > div:last-child, .full-width-section > .span_12 .col > div:last-child{
+			padding-left:0px;
+	}
+
+	.page-id-1039 .ajde_evcal_calendar .eventon_events_list p {
+		margin-top: -4em!important;
+	}
+	#event_1926 p {
+		margin-bottom: 1.5em!important;
+	}
+}
+
+html body.page-id-1039 .ajde_evcal_calendar .eventon_events_list p {
+	margin-top: 0 !important;
+}
+

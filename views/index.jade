@@ -1,0 +1,44 @@
+extends layout
+
+block content
+
+ section.container
+  // Jumbotron Header
+  header.jumbotron.hero-spacer
+    h1 MostFrog Business Directory
+    p
+      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero 
+    p
+      a.btn.btn-primary.btn-large(href='/add-business') Add Your Business Now!
+  hr
+  // Title
+  .row
+    .col-lg-12
+      h3 Current Businesses
+  // /.row
+  // Page Features
+  .row.text-center
+    each business, i in busines
+     .col-md-3.col-sm-6.hero-feature
+      .thumbnail
+        img(src='#{business.businessLogoUrl}', alt='')
+        .caption
+          h3 #{business.businessName}
+          p.text-left #{business.businessDescription}
+          p.text-left #{business.businessAddress}
+          p.text-left #{business.businessOwner}
+          a.text-left.displayBlock(href='#{business.businessPhoneNumber}')
+            i.fa.fa-phone
+            | #{business.businessPhoneNumber}
+          a.text-left.displayBlock(href='mailto:#{business.businessEmail}') 
+            i.fa.fa-envelope-o
+            | #{business.businessEmail} 
+          a.text-left.displayBlock(href='#{business.businessWebsite}') 
+            i.fa.fa-home
+            | #{business.businessWebsite}
+          a.text-left(href='#{business.businessSocialFB}')
+            i.fa.fa-facebook
+          a.text-left( href='#{business.businessSocialLI}')
+            i.fa.fa-linkedin
+          hr
+          

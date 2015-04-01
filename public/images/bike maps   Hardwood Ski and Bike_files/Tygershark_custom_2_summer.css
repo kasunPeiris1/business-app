@@ -1,0 +1,107 @@
+/*
+╔╦╗┬ ┬┌─┐┌─┐┬─┐  ╔═╗┬ ┬┌─┐┬─┐┬┌─
+ ║ └┬┘│ ┬├┤ ├┬┘  ╚═╗├─┤├─┤├┬┘├┴┐
+ ╩  ┴ └─┘└─┘┴└─  ╚═╝┴ ┴┴ ┴┴└─┴ ┴
+================================
+25/03/2015 | Elina
+================================
+Unique classes and ID's for Summer
+
+Header : #summer_header
+Body   : #summer
+Footer : .footer_summer 
+*/
+
+/* PLAN YOUR TRIP */
+.page-id-4067 .swiper-slide .content {
+  padding: 2em 6%;
+  height: 504px;
+  background: #e1bc00;
+  top: 0 !important;
+  left: 0%;
+}
+.page-id-4067 .swiper-slide .content h2 {
+  color: #fff;
+  margin-bottom: 0.5em;
+}
+.page-id-4067 .swiper-slide .content a:first-of-type {
+  padding-top: 0.5em;
+  margin-top: 1em;
+  margin-left: 3em;
+  margin-right: 3em;
+  border-top: 3px solid white;
+}
+.page-id-4067 .swiper-slide .content a {
+  font-size: 1.3em;
+  color: white;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+/* PROGRAMS & LESSONS */
+	.page-id-1177 .program-btn-text {
+		color: #fff;
+	}
+#summer_header #summer .wpb_wrapper.overlay-blue {
+	 background-color: rgba(157, 78, 17, 0.55)!important;
+}
+
+/* GROUP BOOKING FORM */
+#summer h2 {
+  color: #;
+}
+/* RENTALS */
+#tablepress-6 caption a,
+#tablepress-8 caption a  {
+  display: none!important;
+}
+
+
+/* RESPONSIVE */
+@media only screen and (max-width: 1300px){
+	.page-id-4067 .image-hours {
+  		height: 365px!important;
+  		background-size: cover;
+	}
+}
+@media only screen and (max-width: 1000px){
+	.page-id-4067 .image-hours {
+  		width: 100%!important;
+	}
+	.page-id-4067 .mobile-remove {
+		display: none;
+	}
+  .page-id-1177 .vc_span6.width-100 {
+    width: 100%!important;
+  }
+  .page-id-1177 .column-display-none {
+    display: none!important;
+  }
+  .page-id-1177 .one-fourths.vc_span3 {
+    width: 100%!important;
+  }
+  .page-id-1179 .vc_row-fluid .vc_span4 {
+    width: 100%!important;
+  }
+}
+@media only screen and (max-width: 81.25em){
+	.page-id-4067 .swiper-slide .content {
+	  width: 50%;
+	  padding-left: 4.2em;
+	  padding-right: 4.2em;
+	}
+	.page-id-4067 .swiper-slide .content h2 {
+  		font-size: 2.5em;
+	}
+	.page-id-4067 .swiper-slide .content p {
+  		font-size: 0.8em;
+  }
+
+}
+@media only screen and (min-width: 1000px) and (max-width: 1300px){
+    .page-id-1179 .to-color-text object {
+      top: 1em;}
+   .page-id-1179 .to-color-text {
+      padding-top: 5%!important;
+    }
+}
