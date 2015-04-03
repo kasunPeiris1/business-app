@@ -21,19 +21,22 @@ block content
     each business, i in busines
      .col-md-3.col-sm-6.hero-feature
       .thumbnail
-        img(src='#{business.businessLogoUrl}', alt='')
+        img(src='#{business.businessLogoUrl}', alt='business logo' width='300' height='200')
         .caption
           h3 #{business.businessName}
-          p.text-left #{business.businessDescription}
-          p.text-left #{business.businessAddress}
-          p.text-left #{business.businessOwner}
+          p.text-left 
+            i #{business.businessDescription}
+          p.text-left 
+            i Address:#{business.businessAddress}
+          p.text-left 
+            i Owner: #{business.businessOwner}
           a.text-left.displayBlock(href='tel:#{business.businessPhoneNumber}')
             i.fa.fa-phone
             | #{business.businessPhoneNumber}
           a.text-left.displayBlock(href='mailto:#{business.businessEmail}') 
             i.fa.fa-envelope-o
             | #{business.businessEmail} 
-          a.text-left.displayBlock(href='#{business.businessWebsite}') 
+          a.text-left.displayBlock(href='#{business.businessWebsite}' target='_blank') 
             i.fa.fa-home
             | #{business.businessWebsite}
           a.text-left(href='#{business.businessSocialFB}')

@@ -19,23 +19,23 @@ block content
           .control-group
             label.control-label(for='business_name') Business Name
             .controls
-              input#business_name.form-control(type='text', name='business_name', placeholder='Enter Your Business Name' value='#{business.businessName}')
+              input#business_name.form-control(type='text', name='business_name', placeholder='Enter Your Business Name' value='#{business.businessName}' required)
           .control-group
             label.control-label(for='business_owner') Business Owner
             .controls
-              input#business_owner.form-control(type='text', name='business_owner', placeholder='Enter Your Business Name' value='#{business.businessOwner}')
+              input#business_owner.form-control(type='text', name='business_owner', placeholder='Enter Your Business Name' value='#{business.businessOwner}' required)
           .control-group
             label.control-label(for='business_description') Business Description
             .controls
-              input#business_description.form-control(type='text', name='business_description', placeholder='Enter Your Business Description' value='#{business.businessDescription}')
+              input#business_description.form-control(type='text', name='business_description', placeholder='Enter Your Business Description' value='#{business.businessDescription}' required)
           .control-group
             label.control-label(for='business_address') Business Address
             .controls
-              input#business_address.form-control(type='text', name='business_address', placeholder='Enter Your Business Address' value='#{business.businessAddress}')
+              input#business_address.form-control(type='text', name='business_address', placeholder='Enter Your Business Address' value='#{business.businessAddress}' required)
           .control-group
             label.control-label(for='business_phone') Business Phone Number
             .controls
-              input#business_phone.form-control(type='text', placeholder='Enter Your Phone Number', name='business_phone' value='#{business.businessPhoneNumber}')
+              input#business_phone.form-control(type='text', placeholder='Enter Your Phone Number', name='business_phone' value='#{business.businessPhoneNumber}' required)
         section.col-sm-12.col-md-6.col-lg-6
           .control-group
             label.control-label(for='business_logo') Business Logo
@@ -44,19 +44,19 @@ block content
           .control-group
             label.control-label(for='business_email') Business Email Address
             .controls
-              input#business_email.form-control(type='text', name='business_email', placeholder='Enter Your Business Email' value='#{business.businessEmail}')
+              input#business_email.form-control(type='text', name='business_email', placeholder='Enter Your Business Email' value='#{business.businessEmail}' required)
           .control-group
             label.control-label(for='business_web') Business Website
             .controls
-              input#business_web.form-control(type='text', name='business_web', placeholder='Enter Your Business Website' value='#{business.businessWebsite}')
+              input#business_web.form-control(type='text', name='business_web', placeholder='Enter Your Business Website' value='#{business.businessWebsite}' pattern='^(https?)://.*$' data-validation-pattern-message='enter a valid url starts with http://, If you dont have a company website  just leve as http://')
           .control-group
             label.control-label(for='business_fb') Business Facebook
             .controls
-              input#business_fb.form-control(type='text', name='business_fb', placeholder='Enter Your Business Facebook' value='#{business.businessSocialFB}')
+              input#business_fb.form-control(type='text', name='business_fb', placeholder='Enter Your Business Facebook' value='#{business.businessSocialFB}' pattern='^(https?)://.*$' data-validation-pattern-message='enter a valid url starts with http://, If you dont have a facebook account  just leve as http://')
           .control-group
             label.control-label(for='business_web') Business Linkedin
             .controls
-              input#business_web.form-control(type='text', name='business_li', placeholder='Enter Your Business Linkedin' value='#{business.businessSocialLI}')
+              input#business_web.form-control(type='text', name='business_li', placeholder='Enter Your Business Linkedin' value='#{business.businessSocialLI}' pattern='^(https?)://.*$' data-validation-pattern-message='enter a valid url starts with http://, , If you dont have a linkedin account  just leve as http://')
         section.col-sm-12.col-md-12.col-lg-12
           hr
           .control-group

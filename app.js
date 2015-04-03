@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+var expressValidator = require('express-validator');
 var app = express();
 
 // view engine setup
@@ -20,6 +20,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(expressValidator());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
@@ -29,7 +30,8 @@ app.listen(port);
 
 var mongoose = require('mongoose');
 	//mongoose will automatically create databes upon this name 
-	mongoose.connect('mongodb://kasunPeiris:kasunPeiris1234@ds059821.mongolab.com:59821/bizapp');
+	mongoose.connect('mongodb://localhost/business_dir');
+//	mongoose.connect('mongodb://kasunPeiris:kasunPeiris1234@ds059821.mongolab.com:59821/bizapp');
 //defining the routes
 var	businesses =require('./routes/business.js');
 	app.use('/',businesses);

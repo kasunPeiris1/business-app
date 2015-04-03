@@ -18,6 +18,17 @@ a.displayBlock{display:block!important;}
 	font-weight: bold;
 	color: white;
 }
+i.fa{
+	padding:1%;
+	color:#333;
+	font-size:1em!important;
+}
+i.fa:hover{
+	color:#333;
+}
+a{
+	text-decoration: none!important;
+}
 @media all and (max-width:768px){
 	.block{
 		display: none!important;

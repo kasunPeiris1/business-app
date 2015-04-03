@@ -13,7 +13,8 @@ var express= require('express'),
 	formidable= require('formidable'),//requiring the formidabel pacakge 
 	util=require('util'),//requireing util package
 	fs=require('fs-extra'),//file system
-    basicAuth = require('basic-auth-connect');//basic authentication
+    basicAuth = require('basic-auth-connect'),//basic authentication
+	expressValidator = require('express-validator');//experess validator
 
 //user authentication using basic Authentication 
 var userAuth= basicAuth(function(user,pass,fn){
@@ -38,7 +39,7 @@ router.post('/add-business',function(req,res,next){
 	
 	//validate the url and the methord
 	 if (req.url == '/add-business' && req.method.toLowerCase() == 'post') {
-    
+    	 
     	var form = new formidable.IncomingForm(),// parse a file upload 
 	    	businessid;//hold the business id
 			//vaiables to hold the values that pass through the form
@@ -64,6 +65,25 @@ router.post('/add-business',function(req,res,next){
 			else {
 				image_url='/images/'+files.business_logo.name;
 			}
+			//checking for facebook url 
+			if(fields.business_fb =='http://'){
+				businessSocialFB='https://www.facebook.com/';
+			}else {
+				businessSocialFB=fields.business_fb;
+			}
+			 //check for linked in url
+			if(fields.business_li =='http://'){
+				businessSocialLI='https://www.linkedin.com/';
+			}else {
+				businessSocialLI=fields.business_li;
+			}
+			 
+			if(fields.business_web =='http://'){
+				businessWebsite='/';
+			}else {
+				businessWebsite=fields.business_web;
+			}
+			 
 			//prepairing the object and setting in to the global variable
 			BusinessAdd={
 				businessName: businessName,
@@ -232,6 +252,24 @@ router.post('/edit-business/:id',function(req,res,next){
 		}
 		else {
 			image_url='/images/'+files.business_logo.name;
+		}
+		//checking for facebook url 
+		if(fields.business_fb =='http://'){
+			businessSocialFB='https://www.facebook.com/';
+		}else {
+			businessSocialFB=fields.business_fb;
+		}
+		 //check for linked in url
+		if(fields.business_li =='http://'){
+			businessSocialLI='https://www.linkedin.com/';
+		}else {
+			businessSocialLI=fields.business_li;
+		}
+
+		if(fields.business_web =='http://'){
+			businessWebsite='/';
+		}else {
+			businessWebsite=fields.business_web;
 		}
 		//prepairing the object and setting in to the global variable
 		BusinessEdit={
