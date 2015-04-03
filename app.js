@@ -30,8 +30,8 @@ app.listen(port);
 
 var mongoose = require('mongoose');
 	//mongoose will automatically create databes upon this name 
-	mongoose.connect('mongodb://localhost/business_dir');
-//	mongoose.connect('mongodb://kasunPeiris:kasunPeiris1234@ds059821.mongolab.com:59821/bizapp');
+//	mongoose.connect('mongodb://localhost/business_dir');
+	mongoose.connect('mongodb://kasunPeiris:kasunPeiris1234@ds059821.mongolab.com:59821/bizapp');
 //defining the routes
 var	businesses =require('./routes/business.js');
 	app.use('/',businesses);
