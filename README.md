@@ -1,5 +1,5 @@
 # Business Directory
- node.js application with CRUD operations
+ node.js application(CRUD operations) with Twitter Bootstrap, Node.js, Express, and MongoDB 
  
 ##Packages Used
 * *mongoose*
