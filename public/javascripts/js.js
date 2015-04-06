@@ -1,7 +1,9 @@
 
 $(document).ready(function(){
 	//input validation message
-	$("input,select,textarea").not("[type=submit]").jqBootstrapValidation({preventSubmit: false});
+	$("input,select,textarea").not("[type=submit]").jqBootstrapValidation({
+		preventSubmit: false
+	});
 	
 	var $container = $('.masonry-container');
     $container.imagesLoaded( function () {
@@ -18,4 +20,10 @@ $(document).ready(function(){
 		
 	});
 });
-
+$(window).load(function(){
+	
+	$("input,select,textarea").not("[type=submit]").jqBootstrapValidation({
+		preventSubmit: false
+	});
+	
+});
