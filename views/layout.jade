@@ -8,7 +8,7 @@ html(lang='en')
     meta(name='author', content='')
     title MostFrog Business Directory
     // Bootstrap Core CSS
-    link(href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', rel='stylesheet')
+    link(href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', rel='stylesheet')
     link(href='/stylesheets/bootstrap.min.css', rel='stylesheet')
     link(href='/stylesheets/styles.css', rel='stylesheet')
     // Custom CSS
@@ -51,8 +51,12 @@ html(lang='en')
 footer
   .row
     .col-lg-12
-      p.text-center  Designed and Developed By 
-                   a(href='http://kasunpeiris.com/' target='_blank') Kasun Peiris
+    p.text-center
+      | Designed and Developed By
+      a(href='http://kasunpeiris.com/', target='_blank')  Kasun Peiris 
+      | | Download the Project on 
+      a(href='https://github.com/kasunPeiris1/business-app' target='_blank') Git Hub
+        i.fa.fa-github	   
 // /.container
 // jQuery
 script(src='javascripts/jquery.js')
