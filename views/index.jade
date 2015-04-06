@@ -15,11 +15,11 @@ block content
   .row
     .col-lg-12
       h3 Current Businesses
-  // /.row
+  // /.row.masonry-container
   // Page Features
-  .row.text-center
+  .row.text-center.masonry-container
     each business, i in busines
-     .col-md-3.col-sm-6.hero-feature
+     .col-md-3.item.col-sm-6.hero-feature
       .thumbnail
         img(src='#{business.businessLogoUrl}', alt='business logo' width='300' height='200')
         .caption

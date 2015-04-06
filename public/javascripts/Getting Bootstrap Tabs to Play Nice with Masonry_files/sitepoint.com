@@ -1,0 +1,1 @@
+PARSELY.pInit({"apikey":"sitepoint.com","settings":{"debug":false,"widget":false,"tracker":true},"customizations":null,"track_ip_addresses":true,"bundle":"/code/ptrack-v0.4.0.js","track_third_party_cookies":true,"uuid":"f2b82abc-38c6-44d9-adf0-79b99a373b2b"});

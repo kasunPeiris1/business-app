@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<!-- saved from url=(0085)http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta charset="UTF-8">
+
+  <meta name="google" value="notranslate">
+
+  <!--
+Copyright (c) 2015 by SitePoint (http://codepen.io/SitePoint/pen/mywEMR)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+  <title>CodePen - Getting Bootstrap Tabs to Play Nice with the Masonry Library</title>
+
+  <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+  <style>body {
+  padding-top: 50px;
+}
+
+.main-container {
+  padding: 40px 15px;
+}
+
+.p {
+  text-align: center;
+}</style>
+
+  <style>*::before, *::after { animation-play-state: paused !important; }</style><script>
+    (function() {
+
+    /*
+      Capture all errors for this pen
+    */
+    window.onerror = function(message, file, line) { return true; }
+
+    /*
+      Capture and kill Web Audio and Speech
+    */
+    if (typeof(AudioContext) != "undefined") {
+      AudioContext = function() {return false;};
+    }
+    if (typeof(webkitAudioContext) != "undefined") {
+      webkitAudioContext = function() {return false;};
+    }
+    if (typeof(mozAudioContext) != "undefined") {
+      mozAudioContext = function() {return false;};
+    }
+    if (typeof(speechSynthesis.speak) != "undefined") {
+      speechSynthesis.speak = function() {return false;};
+    }
+
+    // Kill the browser asking for access to the video cam or audio
+    navigator.webkitGetUserMedia = function(params, func) {
+      // stop all calls in the grid.
+    };
+
+    /*
+      Capture and kill animations after X number of seconds
+    */
+    window.__animationDuration = 4000;
+    window.__animationsTimedOut = false;
+    window.__animationRequests = [];
+    window.__requestAnimationFrame = false;
+    window.__cancelAnimationFrame = false;
+
+    var vendorsReqestAnimationFrame = ['requestAnimationFrame',
+                                       'mozRequestAnimationFrame',
+                                       'webkitRequestAnimationFrame'];
+
+    /*
+      Find the browsers requestAnimationFrame and cancelAnimationFrame
+    */
+    for (var x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+      if (!window.__requestAnimationFrame) {
+        window.__requestAnimationFrame = window[vendorsReqestAnimationFrame[x]];
+      }
+    }
+
+    window.__cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+    /*
+      Wrap the requestAnimationFrame so we can stop it in the future
+    */
+    var __reqFrame = function(callback, element) {
+      /* after the timeout we no longer take requests */
+      if (__animationsTimedOut) {
+        return 0;
+      } else {
+        timerID = __requestAnimationFrame(callback, element);
+        __animationRequests.push(timerID);
+        return timerID;
+      }
+    }
+
+    for(var x = 0; x < vendorsReqestAnimationFrame.length; x++) {
+      window[vendorsReqestAnimationFrame[x]] = __reqFrame;
+    }
+
+    /*
+      Cancel the animations after expiration
+    */
+    setTimeout(function() {
+
+      for (var i=0; i < __animationRequests.length; i++) {
+        window.__cancelAnimationFrame(__animationRequests[i]);
+      }
+
+      /*
+        Inject CSS to stop pseudo element animations as well, because they don't fire events
+      */
+      var ss = window.document.createElement("style");
+      ss.textContent = "*::before, *::after { animation-play-state: paused !important; }";
+      var ref = window.document.getElementsByTagName("script")[0];
+      ref.parentNode.insertBefore(ss, ref);
+
+      __animationsTimedOut = true;
+    }, __animationDuration, 'push');
+
+    /*
+      Capture setInterval and setTimeout to kill after X number of seconds
+    */
+    window.setInterval = (function(oldSetInterval) {
+        var registered = [];
+
+        var f = function(a,b) {
+            /*
+              check if the time has expired, after __animationDuration expires don't take anymore setIntervals
+            */
+            if (this.timedOut) {
+              return 0;
+            } else {
+              return registered[ registered.length ] = oldSetInterval(a,b);
+            }
+        };
+
+        f.clearAll = function() {
+            var r;
+
+            while(r = registered.pop()) {
+               clearInterval( r );
+            }
+
+            this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+    })(window.setInterval);
+
+    window.setTimeout = (function(oldSetTimeout) {
+        var registered = [];
+
+        /*
+          Because some of our timeouts may time out afterwards we want to make sure they know the secret sauce to still use setTimeout after the time has third param
+        */
+        var f = function(a,b, push) {
+            /*
+              Check if the time has expired, after __animationDuration expires don't take anymore requests
+            */
+            if (this.timedOut && typeof(push) == 'undefined') {
+              return 0;
+            } else {
+              /*
+                If push is there, never clear that interval so never add it to the registry
+              */
+              if (push) {
+                return oldSetTimeout(a,b);
+              } else {
+                return registered[ registered.length ] = oldSetTimeout(a,b);
+              }
+            }
+        };
+
+        f.clearAll = function() {
+            var r;
+
+            while (r = registered.pop()) {
+              clearTimeout( r );
+            }
+
+            this.timedOut = true;
+        };
+
+        f.timedOut = false;
+
+        return f;
+    })(window.setTimeout);
+
+    setTimeout(function() {
+
+      setTimeout.clearAll();
+      setInterval.clearAll();
+
+    }, __animationDuration, 'push');
+
+  }());
+  </script>
+
+</head>
+
+<body onload="_l=&#39;t&#39;;">
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#">Project name</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#">Home</a></li>
+        <li><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#about">About</a></li>
+        <li><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#contact">Contact</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<div class="container main-container">
+
+  <div role="tabpanel">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class=""><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#panel-1" aria-controls="panel-1" role="tab" data-toggle="tab" aria-expanded="false">Panel 1</a></li>
+      <li role="presentation" class=""><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#panel-2" aria-controls="panel-2" role="tab" data-toggle="tab" aria-expanded="false">Panel 2</a></li>
+      <li role="presentation" class="active"><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#panel-3" aria-controls="panel-3" role="tab" data-toggle="tab" aria-expanded="true">Panel 3</a></li>
+      <li role="presentation"><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#panel-4" aria-controls="panel-4" role="tab" data-toggle="tab">Panel 4</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+
+      <div role="tabpanel" class="tab-pane" id="panel-1">
+        <div class="row masonry-container" style="position: relative; height: 0px;">
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; top: 0px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="abstract" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 375px; top: 0px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 375px; top: 298px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="abstract" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; top: 398px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="abstract" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; top: 746px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="abstract" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 375px; top: 796px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="abstract" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div>
+
+        </div> <!--/.masonry-container  -->
+      </div><!--/.tab-panel -->
+
+      <div role="tabpanel" class="tab-pane" id="panel-2">
+
+        <div class="row masonry-container" style="position: relative; height: 0px;">
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; top: 0px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="city" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 375px; top: 0px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 375px; top: 298px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="city" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; top: 398px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="city" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; top: 746px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="city" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 375px; top: 796px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="city" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div>
+
+        </div> <!--/.masonry-container  -->
+
+      </div><!--/.tab-panel -->
+
+      <div role="tabpanel" class="tab-pane active" id="panel-3">
+        <div class="row masonry-container" style="position: relative; height: 1294px;">
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; top: 0px;">
+            <div class="thumbnail">
+              <img src="nature" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 375px; top: 0px;">
+            <div class="thumbnail">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 375px; top: 298px;">
+            <div class="thumbnail">
+              <img src="nature" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; top: 398px;">
+            <div class="thumbnail">
+              <img src="nature" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; top: 746px;">
+            <div class="thumbnail">
+              <img src="nature" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 375px; top: 796px;">
+            <div class="thumbnail">
+              <img src="nature" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div>
+
+        </div> <!--/.masonry-container  -->
+      </div><!--/.tab-panel -->
+
+      <div role="tabpanel" class="tab-pane" id="panel-4">
+        <div class="row masonry-container" style="position: relative; height: 0px;">
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="cats" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="cats" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="cats" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="cats" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div><!--/.item  -->
+
+          <div class="col-md-4 col-sm-6 item" style="position: absolute; left: 0px; transition-property: transform, opacity; -webkit-transition-property: transform, opacity; transition-duration: 0.4s; -webkit-transition-duration: 0.4s;">
+            <div class="thumbnail">
+              <img src="cats" alt="">
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti, illum voluptates consectetur consequatur ducimus. Necessitatibus, nobis consequatur hic eaque laborum laudantium. Adipisci, explicabo, asperiores molestias deleniti unde dolore enim quas.</p>
+                <p><a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-primary" role="button">Button</a> <a href="http://s.codepen.io/SitePoint/fullembedgrid/mywEMR?type=embed&animations=stop-after-5#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div>
+
+        </div> <!--/.masonry-container  -->
+      </div><!--/.tab-panel -->
+
+    </div> <!--/.tab-content -->
+
+  </div> <!--/.tab-panel  -->
+
+</div><!-- /.container -->
+
+<p class="p">Demo by Maria Antonietta Perna. <a href="http://www.sitepoint.com/bootstrap-tabs-play-nice-with-masonry-library" target="_blank">See article</a>.</p>
+
+  <script src="jquery-c152c51c4dda93382a3ae51e8a5ea45d.js"></script>
+  <script src="bootstrap.min.js"></script><script src="imagesLoaded.js"></script><script src="masonry.js"></script>
+
+  <script src="stopExecutionOnTimeout-6c99970ade81e43be51fa877be0f7600.js"></script>
+
+  <script>
+(function ($) {
+    var $container = $('.masonry-container');
+    $container.imagesLoaded(function () {
+        $container.masonry({
+            columnWidth: '.item',
+            itemSelector: '.item'
+        });
+    });
+    $('a[data-toggle=tab]').each(function () {
+        var $this = $(this);
+        $this.on('shown.bs.tab', function () {
+            $container.imagesLoaded(function () {
+                $container.masonry({
+                    columnWidth: '.item',
+                    itemSelector: '.item'
+                });
+            });
+        });
+    });
+}(jQuery));
+  </script>
+
+  <script>
+  (function() {
+
+    /*
+      Stop loading any assets if they aren't done yet
+    */
+    setTimeout(function() {
+      /* If onload hasn't been called, stop all requests after 2 seconds */
+      if (typeof(_l) == 'undefined') {
+        if (window.stop !== undefined) {
+          window.stop();
+        } else if (document.execCommand !== undefined) {
+          document.execCommand("Stop", false);
+        }
+      }
+    }, 2000, 'push');
+
+    /*
+      Capture and kill CSS animations after X number of seconds
+    */
+    function pauseAnimations() {
+      var body = document.getElementsByTagName('body')[0];
+
+      if(body.addEventListener) {
+        body.addEventListener("webkitAnimationStart", listener, false);
+        body.addEventListener("webkitAnimationIteration", listener, false);
+        body.addEventListener("animationstart", listener, false);
+        body.addEventListener("animationiteration", listener, false);
+      }
+    }
+
+    function listener(e) {
+      if(e.type == "webkitAnimationStart" || e.type == "webkitAnimationIteration") {
+        var targetEl = e.target;
+
+        setTimeout(function() {
+          targetEl.style.webkitAnimationPlayState = 'paused';
+        }, __animationDuration, 'push');
+      }
+      else if(e.type == "animationstart" || e.type == "animationiteration") {
+
+        var targetEl = e.target;
+
+        setTimeout(function() {
+
+          targetEl.style.MozAnimationPlayState = 'paused';
+          targetEl.style.animationPlayState = 'paused';
+
+        }, __animationDuration, 'push');
+      }
+    }
+
+    pauseAnimations();
+
+    /*
+      Pause all audio elements, allow the audio/video elements to render before stopping them
+    */
+    function pauseElementTypes(type) {
+      for (var i = 0, els = document.getElementsByTagName(type); i < els.length; i++) {
+        els[i].pause();
+      }
+    }
+
+    /*
+      Wait until the elements have been created to pause them
+    */
+    setTimeout(function() {
+      pauseElementTypes('audio');
+      pauseElementTypes('video');
+    }, 100);
+
+  }());
+  </script>
+
+
+
+</body></html>

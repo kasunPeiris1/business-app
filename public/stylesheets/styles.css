@@ -29,6 +29,13 @@ i.fa:hover{
 a{
 	text-decoration: none!important;
 }
+ul,ul li{
+	list-style: none;
+	color: red;
+	margin:0!important;
+	text-transform: lowercase;
+}
+
 @media all and (max-width:768px){
 	.block{
 		display: none!important;
