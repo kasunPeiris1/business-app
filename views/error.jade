@@ -1,6 +1,12 @@
 extends layout
 
 block content
+ .row
+  .col-md-12.col-lg-12
   h1= message
   h2= error.status
-  pre #{error.stack}
+  a(href='#' class='dev') More Info
+  p.errorInfo #{error.stack}
+  h2 Sorry, the page you were looking for doesn't exist !.
+  p go back to 
+   a(href='/') Home Page
